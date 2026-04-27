@@ -11,6 +11,7 @@ pipeline {
 
         stage('Install Backend Dependencies') {
             steps {
+                echo 'Installing backend dependencies...'
                 dir('server') {
                     sh 'npm install'
                 }
@@ -19,14 +20,14 @@ pipeline {
 
         stage('Run Backend') {
             steps {
+                echo 'Starting backend server...'
                 dir('server') {
                     sh 'node server.js &'
-                    sleep 3
                 }
             }
         }
 
-        stage('Done') {
+        stage('Build Success') {
             steps {
                 echo 'Build Success!'
             }
